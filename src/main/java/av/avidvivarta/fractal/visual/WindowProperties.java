@@ -6,13 +6,15 @@ public class WindowProperties {
     public static final double DEFAULT_ASPECT_RATIO = 1.0d;
     public static final int DEFAULT_ZOOM = 1;
     public static final double DEFAULT_ZOOM_FACTOR = 4;
+    public static final short DEFAULT_FPS = 60;
     public static final String DEFAULT_TITLE = "Fractal_try_2";
-    private static  int width = DEFAULT_WIDTH;
-    private static  int height = DEFAULT_HEIGHT;
-    private static  double zoom = DEFAULT_ZOOM;
-    private static  double zoomFactor = DEFAULT_ZOOM_FACTOR;
-    private static  double aspectRatio = DEFAULT_ASPECT_RATIO;
-    private static  String title = DEFAULT_TITLE;
+    private static int width = DEFAULT_WIDTH;
+    private static int height = DEFAULT_HEIGHT;
+    private static double zoom = DEFAULT_ZOOM;
+    private static double zoomFactor = DEFAULT_ZOOM_FACTOR;
+    private static double aspectRatio = DEFAULT_ASPECT_RATIO;
+    private static String title = DEFAULT_TITLE;
+    private static short fps = DEFAULT_FPS;
 
     private WindowProperties() {
     }
@@ -63,5 +65,13 @@ public class WindowProperties {
 
     public static void setZoomFactor(double zoomFactor) {
         WindowProperties.zoomFactor = zoomFactor;
+    }
+
+    public static short getFps() {
+        return fps;
+    }
+
+    public static void setFps(short fps) {
+        WindowProperties.fps = fps;
     }
 }
