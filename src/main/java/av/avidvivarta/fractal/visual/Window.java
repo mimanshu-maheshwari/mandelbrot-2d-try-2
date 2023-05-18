@@ -38,7 +38,7 @@ public class Window extends JFrame implements Runnable {
     }
 
     private void initWindowProperties() {
-        this.setPreferredSize(new Dimension(tWindowProperties.getWidth(), WindowProperties.getHeight()));
+        this.setPreferredSize(new Dimension(WindowProperties.getWidth(), WindowProperties.getHeight()));
         this.setResizable(false);
         this.setTitle(WindowProperties.getTitle());
         this.add(this.screen, BorderLayout.CENTER);
