@@ -1,62 +1,67 @@
 package av.avidvivarta.fractal.visual;
 
 public class WindowProperties {
-    private WindowProperties windowProperties;
-    public final int DEFAULT_WIDTH = 500;
-    public final int DEFAULT_HEIGHT = 500;
-    public final double DEFAULT_ASPECT_RATIO = 1.0d;
-    public final int DEFAULT_ZOOM = 1;
-    public final String DEFAULT_TITLE = "Fractal_try_2";
-    private int width = DEFAULT_WIDTH;
-    private int height = DEFAULT_HEIGHT;
-    private double zoom = DEFAULT_ZOOM;
-    private double aspectRatio = DEFAULT_ASPECT_RATIO;
-    private String title = DEFAULT_TITLE;
+    public static final int DEFAULT_WIDTH = 500;
+    public static final int DEFAULT_HEIGHT = 500;
+    public static final double DEFAULT_ASPECT_RATIO = 1.0d;
+    public static final int DEFAULT_ZOOM = 1;
+    public static final double DEFAULT_ZOOM_FACTOR = 4;
+    public static final String DEFAULT_TITLE = "Fractal_try_2";
+    private static  int width = DEFAULT_WIDTH;
+    private static  int height = DEFAULT_HEIGHT;
+    private static  double zoom = DEFAULT_ZOOM;
+    private static  double zoomFactor = DEFAULT_ZOOM_FACTOR;
+    private static  double aspectRatio = DEFAULT_ASPECT_RATIO;
+    private static  String title = DEFAULT_TITLE;
 
     private WindowProperties() {
     }
 
-    public WindowProperties getWindowProperties() {
-        return this.windowProperties == null ? this.windowProperties = new WindowProperties() : this.windowProperties;
-    }
-
-    public int getWidth() {
+    public static int getWidth() {
         return width;
     }
 
-    public void setWidth(int width) {
-        this.width = width;
+    public static void setWidth(int width) {
+        WindowProperties.width = width;
     }
 
-    public int getHeight() {
+    public static int getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
+    public static void setHeight(int height) {
+        WindowProperties.height = height;
     }
 
-    public double getZoom() {
+    public static double getZoom() {
         return zoom;
     }
 
-    public void setZoom(double zoom) {
-        this.zoom = zoom;
+    public static void setZoom(double zoom) {
+        WindowProperties.zoom = zoom;
     }
 
-    public double getAspectRatio() {
+    public static double getAspectRatio() {
         return aspectRatio;
     }
 
-    public void setAspectRatio(double aspectRatio) {
-        this.aspectRatio = aspectRatio;
+    public static void setAspectRatio(double aspectRatio) {
+        WindowProperties.aspectRatio = aspectRatio;
     }
 
-    public String getTitle() {
+    public static String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public static void setTitle(String title) {
+        WindowProperties.title = title;
+    }
+
+    public static double getZoomFactor() {
+        return zoomFactor;
+    }
+
+    public static void setZoomFactor(double zoomFactor) {
+        WindowProperties.zoomFactor = zoomFactor;
     }
 }
