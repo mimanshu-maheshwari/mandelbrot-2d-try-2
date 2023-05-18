@@ -2,24 +2,23 @@ package av.avidvivarta.fractal.visual;
 
 import av.avidvivarta.fractal.input.listener.KeyBoardInput;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class Screen extends JPanel {
-    private int screenWidth ;
-    private int screenHeight;
     public int x = 100, y = 100, rectSize = 40, speed = 10;
 
-    public Screen(int screenWidth, int screenHeight){
-       this.screenWidth = screenWidth;
-       this.screenHeight = screenHeight;
+    public Screen(){
+
        this.init();
     }
 
     public void init(){
-        this.setPreferredSize(new Dimension(this.screenWidth, this.screenHeight));
-//        this.setBackground(Color.blue);
-        this.setDoubleBuffered(true);
+        this.setBackground(Color.blue);
+//        this.setDoubleBuffered(true);
     }
     @Override
     public void paintComponent(Graphics g){
@@ -30,7 +29,7 @@ public class Screen extends JPanel {
         graphics2D.dispose();
     }
 
-    public void update(double dt, KeyBoardInput keyBoardInput){
+    public void updateScreenData(double dt, KeyBoardInput keyBoardInput){
         if (keyBoardInput.isUpPressed()){
             y -= speed * dt;
             y = y > 0 ? y : 0;
@@ -47,6 +46,6 @@ public class Screen extends JPanel {
             x += speed* dt;
             x = x < getWidth() - rectSize ? x :  getWidth() - rectSize;
         }
-        System.out.println("x: " + x + ", y: " + y );
+//        System.out.println("x: " + x + ", y: " + y );
     }
 }

@@ -17,7 +17,7 @@ public class KeyBoardInput extends KeyAdapter implements KeyListener {
         if(code <= 128) {
             this.keyPressed[code] = true;
         }
-        System.out.println("Key Pressed: " + e.getExtendedKeyCode());
+//        System.out.println("Key Pressed: " + e.getExtendedKeyCode());
     }
 
     @Override
@@ -26,7 +26,7 @@ public class KeyBoardInput extends KeyAdapter implements KeyListener {
         if(code <= 128) {
             this.keyPressed[code] = false;
         }
-        System.out.println("Key Released: " + e.getExtendedKeyCode());
+//        System.out.println("Key Released: " + e.getExtendedKeyCode());
     }
 
     public boolean isUpPressed(){

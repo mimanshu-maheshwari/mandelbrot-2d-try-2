@@ -4,8 +4,12 @@ import av.avidvivarta.fractal.input.listener.KeyBoardInput;
 import av.avidvivarta.fractal.input.listener.MouseInput;
 import av.avidvivarta.fractal.utils.Time;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 public class Window extends JFrame implements Runnable {
 
@@ -15,6 +19,7 @@ public class Window extends JFrame implements Runnable {
     private MouseInput mouseInput;
     private KeyBoardInput keyBoardInput;
     private boolean isRunning;
+    private BufferedImage bufferedImage;
 
     private Window() {
         this.init();
@@ -27,34 +32,39 @@ public class Window extends JFrame implements Runnable {
     }
 
     private void init() {
-        this.screen = new Screen(WindowProperties.getWidth(), WindowProperties.getHeight());
+        this.screen = new Screen();
         this.keyBoardInput = new KeyBoardInput();
         this.mouseInput = new MouseInput();
-
     }
 
     private void initWindowProperties() {
+        this.setPreferredSize(new Dimension(tWindowProperties.getWidth(), WindowProperties.getHeight()));
         this.setResizable(false);
         this.setTitle(WindowProperties.getTitle());
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.add(this.screen, BorderLayout.CENTER);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
+        this.setLocationRelativeTo(null);
         this.addKeyListener(this.keyBoardInput);
         this.addMouseListener(this.mouseInput);
         this.setFocusable(true);
-        this.setLocationRelativeTo(null);
-        this.isRunning = true;
         this.setVisible(true);
+        this.isRunning = true;
+        this.bufferedImage = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_RGB);
     }
 
     public void update(double dt){
-//        System.out.println("update called");
-        this.screen.update(dt, this.keyBoardInput);
+        this.screen.updateScreenData(dt, this.keyBoardInput);
     }
     public void render(){
-        this.screen.paintComponent(getGraphics());
-
-//        System.out.println("render called");
+        BufferStrategy bs = getBufferStrategy();
+        if (bs == null){
+            createBufferStrategy(3);
+            return ;
+        }
+        Graphics g = bs.getDrawGraphics();
+        this.screen.paintComponent(g);
+        bs.show();
     }
     @Override
     public void run() {
