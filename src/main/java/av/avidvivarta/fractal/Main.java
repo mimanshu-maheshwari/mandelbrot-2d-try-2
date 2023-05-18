@@ -10,8 +10,7 @@ public class Main {
     public static void main(String[] args){
         System.out.println(":::: Fractal application starting ::::" + Time.startTime);
         Window window = Window.getWindow();
-        Thread windowThread = new Thread(window, "window");
-        windowThread.start();
+        window.start();
     }
 
 }
