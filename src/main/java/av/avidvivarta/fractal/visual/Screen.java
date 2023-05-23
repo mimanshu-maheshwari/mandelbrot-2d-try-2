@@ -10,13 +10,14 @@ import java.awt.RenderingHints;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Path2D;
 
-public class Screen extends JPanel implements Runnable{
+public class Screen extends JPanel implements Runnable {
     public int screenX = 100, screenY = 100, rectSize = 40, speed = 10;
     public double angle = 0;
 
     @Override
-    public void run(){
+    public void run() {
     }
+
     public Screen() {
         this.init();
     }
@@ -51,23 +52,23 @@ public class Screen extends JPanel implements Runnable{
 
     public void updateScreenData(double dt, KeyBoardInput keyBoardInput) {
         if (keyBoardInput.isUpPressed()) {
-            this.angle+= 2 * dt;
+            this.angle += 2 * dt;
         }
         if (keyBoardInput.isDownPressed()) {
-            this.angle-= 2 * dt;
+            this.angle -= 2 * dt;
         }
         if (keyBoardInput.isLeftPressed()) {
-            this.angle-= 90 * dt;
+            this.angle -= 90 * dt;
         }
         if (keyBoardInput.isRightPressed()) {
-            this.angle+= 90 * dt;
+            this.angle += 90 * dt;
         }
     }
 
     public void drawRotatingCircle(Graphics2D g2d) {
         // create a border cirle
         int pcr = 150, pcx = getWidth() / 2 - pcr, pcy = getHeight() / 2 - pcr;
-        // center of pathCircle;
+        // center of path Circle;
         int pcxc = pcx + pcr, pcyc = pcy + pcr;
         Ellipse2D.Double pathCircle = new Ellipse2D.Double(pcx, pcy, 2 * pcr, 2 * pcr);
         g2d.setColor(Color.white);
@@ -75,7 +76,7 @@ public class Screen extends JPanel implements Runnable{
 
         // create a small circle at center of path circle
         int pccr = 5;
-        Ellipse2D.Double pathCircleCenter= new Ellipse2D.Double(pcxc - pccr, pcyc - pccr, 2 * pccr, 2 * pccr);
+        Ellipse2D.Double pathCircleCenter = new Ellipse2D.Double(pcxc - pccr, pcyc - pccr, 2 * pccr, 2 * pccr);
         g2d.setColor(Color.white);
         g2d.fill(pathCircleCenter);
 
@@ -92,7 +93,7 @@ public class Screen extends JPanel implements Runnable{
         g2d.draw(radiusLine);
 
         // create a circle at path
-        Ellipse2D.Double movingCircle = new Ellipse2D.Double(mcx, mcy, 2* mcr, 2* mcr);
+        Ellipse2D.Double movingCircle = new Ellipse2D.Double(mcx, mcy, 2 * mcr, 2 * mcr);
         g2d.setColor(Color.red);
         g2d.fill(movingCircle);
 
