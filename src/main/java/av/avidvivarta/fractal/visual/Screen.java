@@ -9,22 +9,16 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Path2D;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
 
 public class Screen extends JPanel implements Runnable {
-    public int screenX = 100, screenY = 100, rectSize = 40, speed = 10;
+
+    private BufferedImage bufferedImage;
     public double angle = 0;
 
-    @Override
-    public void run() {
-    }
-
     public Screen() {
-        this.init();
-    }
-
-    public void init() {
-
-
+        bufferedImage = new BufferedImage(WindowProperties.getWidth(), WindowProperties.getHeight(), BufferedImage.TYPE_INT_RGB);
     }
 
     @Override
@@ -35,7 +29,11 @@ public class Screen extends JPanel implements Runnable {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHints(rh);
         drawBackground(g2d, Color.darkGray);
-        drawRotatingCircle(g2d);
+
+        drawImage(g2d);
+
+//         draw rotating circle
+//        drawRotatingCircle(g2d);
 
     }
 
@@ -51,6 +49,22 @@ public class Screen extends JPanel implements Runnable {
     }
 
     public void updateScreenData(double dt, KeyBoardInput keyBoardInput) {
+//        update values for rotating circle
+//        updateScreenDataForRotatingCircle(dt, keyBoardInput);
+    }
+
+    private void drawImage(Graphics2D g2d){
+        g2d.drawImage(bufferedImage, 0,0, getWidth(), getHeight(), null);
+    }
+    public void updateImagePixals(int[] data){
+        for(int y = 0; y < getHeight(); y++){
+            for(int x = 0; x < getWidth(); x++){
+                bufferedImage.setRGB(x, y, 334954432);
+            }
+        }
+    }
+    private void updateScreenDataForRotatingCircle(double dt, KeyBoardInput keyBoardInput) {
+
         if (keyBoardInput.isUpPressed()) {
             this.angle += 2 * dt;
         }
@@ -97,5 +111,9 @@ public class Screen extends JPanel implements Runnable {
         g2d.setColor(Color.red);
         g2d.fill(movingCircle);
 
+    }
+
+    @Override
+    public void run() {
     }
 }

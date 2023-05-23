@@ -5,6 +5,7 @@ import av.avidvivarta.fractal.utils.Time;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 
@@ -36,8 +37,8 @@ public class Window extends JFrame implements Runnable {
 
     private void initWindowProperties() {
         this.setSize(new Dimension(WindowProperties.getWidth(), WindowProperties.getHeight()));
-        this.setResizable(true);
         this.setTitle(WindowProperties.getTitle());
+        this.setResizable(true);
         this.add(this.screen);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
@@ -49,6 +50,13 @@ public class Window extends JFrame implements Runnable {
     }
 
     public void update(double dt){
+        int[] data = new int[getWidth() * getHeight()];
+        for(int y = 0; y < getHeight(); y++){
+            for(int x = 0; x < getWidth(); x++){
+                data[y * getWidth() + x] = 2342;
+            }
+        }
+        this.screen.updateImagePixals(data);
         this.screen.updateScreenData(dt, this.keyBoardInput);
     }
     public void render(){
